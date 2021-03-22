@@ -24,10 +24,10 @@ using UnityEngine.SceneManagement;
  * - MiniMap toggle functionality implemented
  * - Pause button functionality implemented
  * 
- *                        Beta - 2021-03-21
- * - 
- * -
- * -
+ *                        Beta(Mobile Conversion) - 2021-03-21
+ * - Added function to player movement and attacking for mobile application
+ * - Added function to minimap toggle for mobile application
+ * - Function to restart scene when player's health gets to 0 or less
  */
 
 public class PlayerController : MonoBehaviour
@@ -37,8 +37,10 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject playerModel;
     public PauseController pause;
+    public bool isAttacking;
 
     [Header("Player Movement Properties")]
+    public Joystick joystick;
     public float movementSpeed;
     public float sprintSpeed;
     public float controllerMoveSpeed = 10.0f;
@@ -46,6 +48,8 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 3.0f;
     public Transform pivot;
     public float rotationSpeed;
+    public float xJoy;
+    public float zJoy;
 
     public Transform groundCheck;
     public float groundRadius = 0.5f;
@@ -83,7 +87,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region Keyboard control movement
+        
         float yJump = velocity.y;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
         if (isGrounded && velocity.y < 0)
@@ -91,6 +95,8 @@ public class PlayerController : MonoBehaviour
             velocity.y = -2.0f;
 
         }
+        
+        #region Keyboard control movement
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -111,6 +117,13 @@ public class PlayerController : MonoBehaviour
         Vector3 moveController = transform.right * xController - transform.forward * zController;
         controller.Move(moveController * controllerMoveSpeed * Time.deltaTime);
         velocity = moveController.normalized * controllerMoveSpeed;
+        #endregion
+
+        #region Mobile Joystick
+        xJoy = joystick.Horizontal;
+        zJoy = joystick.Vertical;
+        Vector3 moveMobile = (transform.right * xJoy) + (transform.forward * zJoy);
+        controller.Move(moveMobile * movementSpeed * Time.deltaTime);
         #endregion
 
         //Run function
@@ -159,6 +172,7 @@ public class PlayerController : MonoBehaviour
         //Animation parameter functions
         animator.SetBool("isGrounded", controller.isGrounded);
         animator.SetFloat("Speed", Input.GetAxis("Vertical") + Input.GetAxis("Horizontal") - (Input.GetAxis("LeftJoyStickVertical") + Input.GetAxis("LeftJoyStickHorizontal")));
+        animator.SetFloat("Speed", joystick.Vertical + joystick.Horizontal - joystick.Vertical + joystick.Horizontal);
         animator.SetFloat("SprintSpeed", Input.GetAxis("Vertical") + Input.GetAxis("Horizontal") + Input.GetAxis("LeftJoyStickVertical") + Input.GetAxis("LeftJoyStickHorizontal") + 1);
 
         
@@ -171,17 +185,19 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
+        
         //Attack function
-        if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded || Input.GetKeyDown(KeyCode.Joystick1Button2) && isGrounded)
-        {
-            animator.SetBool("isAttacking", true);
-            playerAudioSource.clip = swordSwing;
-            playerAudioSource.Play();
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse0) && isGrounded || Input.GetKeyUp(KeyCode.Joystick1Button2) && isGrounded)
-        {
-            animator.SetBool("isAttacking", false);
-        }
+        //if (Input.GetKeyDown(KeyCode.L) && isGrounded || Input.GetKeyDown(KeyCode.Joystick1Button2) && isGrounded)
+        //{
+        //    animator.SetBool("isAttacking", true);
+        //    playerAudioSource.clip = swordSwing;
+        //    playerAudioSource.Play();
+        //}
+        //if (Input.GetKeyUp(KeyCode.Mouse0) && isGrounded || Input.GetKeyUp(KeyCode.Joystick1Button2) && isGrounded)
+        //{
+        //    animator.SetBool("isAttacking", false);
+        //}
+
         if (Input.GetKeyDown(KeyCode.Mouse1) && isGrounded)
         {
             animator.SetBool("isParrying", true);
@@ -211,6 +227,93 @@ public class PlayerController : MonoBehaviour
         {
             Invoke("RestartScene", 5.0f);
         }
+    }
+
+    void ToggleSprint()
+    {
+        Vector3 moveMobile = (transform.right * xJoy) + (transform.forward * zJoy);
+        controller.Move(moveMobile * movementSpeed * Time.deltaTime);
+        if (Input.GetButtonDown("Sprint"))
+        {
+            animator.SetBool("isSprinting", Input.GetButtonDown("Sprint"));
+        }
+        if (isGrounded && zJoy > 0)
+        {
+            movementSpeed = sprintSpeed;
+            animator.SetBool("isSprinting", Input.GetButtonDown("Sprint"));
+
+        }
+        if (isGrounded && zJoy < 0)
+        {
+            movementSpeed = 3.0f;
+            animator.SetBool("isSprinting", Input.GetButtonDown("Sprint"));
+
+        }
+        if (isGrounded && zJoy > 0)
+        {
+            movementSpeed = 3.0f;
+            animator.SetBool("isSprinting", false);
+        }
+        if (isGrounded && zJoy < 0)
+        {
+            movementSpeed = 2.0f;
+            animator.SetBool("isSprinting", false);
+        }
+    }
+
+    public void OnSprintPressed()
+    {
+        ToggleSprint();
+    }
+
+    #region Jump Function Mobile
+    void ToggleJump()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+    }
+
+    public void OnJumpPressed()
+    {
+        if (isGrounded)
+        {
+            ToggleJump();
+        }
+    }
+    #endregion
+
+    #region Attack Function Mobile
+    void ToggleAttack()
+    {
+        if (isGrounded && !isAttacking)
+        {
+            isAttacking = true;
+            animator.SetBool("isAttacking", true);
+            playerAudioSource.clip = swordSwing;
+            playerAudioSource.Play();
+        }
+        else
+        {
+            isAttacking = false;
+            animator.SetBool("isAttacking", false);
+        }
+    }
+
+    public void OnAttackPressed()
+    {
+        
+        ToggleAttack();
+        
+    }
+    #endregion
+
+    void ToggleMiniMap()
+    {
+        miniMap.SetActive(!miniMap.activeInHierarchy);
+    }
+
+    public void OnMiniMapButtonPressed()
+    {
+        ToggleMiniMap();
     }
 
     public void DamageHealth(int amt)

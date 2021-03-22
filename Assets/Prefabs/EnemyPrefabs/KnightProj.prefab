@@ -127,8 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   playerBody: {fileID: 4147766913557678289, guid: 99d9e43ebcbd3f74e893dbc33e97485f, type: 3}
-  damageRange1: 10
-  damageRange2: 13
+  damageRange1: 7
+  damageRange2: 9
   playerDamage: {fileID: 7181169345998925964, guid: 99d9e43ebcbd3f74e893dbc33e97485f, type: 3}
   healthBar: {fileID: 0}
-  countDownControl: {fileID: 0}

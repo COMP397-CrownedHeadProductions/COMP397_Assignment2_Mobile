@@ -56,6 +56,28 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    void ToggleInventory()
+    {
+        isOnScreen = !isOnScreen;
+        timer = 0.0f;
+        if (isOnScreen)
+        {
+            //Cursor.lockState = CursorLockMode.None;
+            playerCamera.enabled = false;
+        }
+        else
+        {
+
+            //Cursor.lockState = CursorLockMode.Locked;
+            playerCamera.enabled = true;
+        }
+    }
+
+    public void OnInventoryButtonPressed()
+    {
+        ToggleInventory();
+    }
+
     private void MoveControlPanelDown()
     {
         rectTransform.anchoredPosition = Vector2.Lerp(offScreenPos, onScreenPos, timer);

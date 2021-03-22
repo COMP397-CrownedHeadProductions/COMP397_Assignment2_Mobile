@@ -17,11 +17,13 @@ using UnityEngine;
  * - Updated camera rotation
  * 
  *                        Beta - 2021-03-21
- * - 
+ * - Added function for player camera rotation for mobile application (Right joystick)
+ * 
  */
 
 public class CameraController : MonoBehaviour
 {
+    public Joystick joystick;
     public Transform player;
     public Vector3 distance;
     public bool offSetValues;
@@ -56,12 +58,14 @@ public class CameraController : MonoBehaviour
     {
         #region Mouse Camera Control    
         pivot.transform.position = player.transform.position;
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-            pivot.Rotate(0, mouseX, 0);
+        //float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseX = joystick.Horizontal * mouseSensitivity;
+        pivot.Rotate(0, mouseX, 0);
 
-            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
-            //Invert Y-axis function
-            if (invertYAxis)
+        //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float mouseY = joystick.Vertical * mouseSensitivity;
+        //Invert Y-axis function
+        if (invertYAxis)
             {
                 pivot.Rotate(mouseY, 0, 0);
             }
