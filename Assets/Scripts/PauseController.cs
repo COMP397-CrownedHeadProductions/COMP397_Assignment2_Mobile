@@ -56,6 +56,10 @@ public class PauseController : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         chaseEnem = FindObjectsOfType<ChaseEnemyController>();
         rngEnem = FindObjectsOfType<RangeEnemyController>();
+
+        //Deserialize and loading our Data from Player Preferences
+        var sceneDataJSONString = PlayerPrefs.GetString("playerData");
+        JsonUtility.FromJsonOverwrite(sceneDataJSONString, sceneData);
     }
     // Update is called once per frame
     void Update()
@@ -186,6 +190,8 @@ public class PauseController : MonoBehaviour
             sceneData.rangeEnemRot = rangeEnemy.transform.rotation;
             sceneData.rangeEnemHealth = rangeEnemy.rHealth;
         }
+        // Serialize and Save our data to Player Preferences dictionary/db
+        PlayerPrefs.SetString("playerData", JsonUtility.ToJson(sceneData));
     }
 
 

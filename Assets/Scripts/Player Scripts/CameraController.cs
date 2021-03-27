@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         //distance = player.position - transform.position;
         if (!offSetValues)
         {
@@ -66,14 +66,14 @@ public class CameraController : MonoBehaviour
         float mouseY = joystick.Vertical * mouseSensitivity;
         //Invert Y-axis function
         if (invertYAxis)
-            {
-                pivot.Rotate(mouseY, 0, 0);
-            }
-            else
-            {
-                pivot.Rotate(-mouseY, 0, 0);
-            }
-            #endregion
+        {
+            pivot.Rotate(mouseY, 0, 0);
+        }
+        else
+        {
+            pivot.Rotate(-mouseY, 0, 0);
+        }
+        #endregion
         
         #region Controller Camera Controller
         float controllerX = Input.GetAxis("RightJoyStickHorizontal") * controllerSensitivity * Time.deltaTime;
