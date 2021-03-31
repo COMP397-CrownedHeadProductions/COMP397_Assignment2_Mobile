@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maximumHealth: 0
+  healthBarSlider: {fileID: 0}
 --- !u!1 &7946367328306997417
 GameObject:
   m_ObjectHideFlags: 0

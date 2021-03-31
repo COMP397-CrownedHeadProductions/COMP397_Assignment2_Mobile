@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed;
     public float xJoy;
     public float zJoy;
+    public bool isSprinting;
 
     public Transform groundCheck;
     public float groundRadius = 0.5f;
@@ -97,17 +98,12 @@ public class PlayerController : MonoBehaviour
         }
         
         #region Keyboard control movement
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        //float x = Input.GetAxis("Horizontal");
+        //float z = Input.GetAxis("Vertical");
 
-        Vector3 move = (transform.right * x) + (transform.forward * z);
-        controller.Move(move * movementSpeed * Time.deltaTime);
-        velocity = move.normalized * movementSpeed;
-
-        //if (z < 0)
-        //{
-        //    animator.Play("Player_WalkBack");
-        //}
+        //Vector3 move = (transform.right * x) + (transform.forward * z);
+        //controller.Move(move * movementSpeed * Time.deltaTime);
+        //velocity = move.normalized * movementSpeed;
         #endregion
 
         #region JoyStick control movement
@@ -124,35 +120,36 @@ public class PlayerController : MonoBehaviour
         zJoy = joystick.Vertical;
         Vector3 moveMobile = (transform.right * xJoy) + (transform.forward * zJoy);
         controller.Move(moveMobile * movementSpeed * Time.deltaTime);
+        velocity = moveMobile.normalized * movementSpeed;
         #endregion
 
         //Run function
-        if (Input.GetButtonDown("Sprint"))
-        {
-            animator.SetBool("isSprinting", Input.GetButtonDown("Sprint"));
-        }
-        if(isGrounded && Input.GetButtonDown("Sprint") && z > 0)
-        {
-            movementSpeed = sprintSpeed;
-            animator.SetBool("isSprinting", Input.GetButtonDown("Sprint"));
+        //if (Input.GetButtonDown("Sprint"))
+        //{
+        //    animator.SetBool("isSprinting", Input.GetButtonDown("Sprint"));
+        //}
+        //if(isGrounded && Input.GetButtonDown("Sprint") && z > 0)
+        //{
+        //    movementSpeed = sprintSpeed;
+        //    animator.SetBool("isSprinting", Input.GetButtonDown("Sprint"));
 
-        }
-        if (isGrounded && Input.GetButtonDown("Sprint") && z < 0)
-        {
-            movementSpeed = 3.0f;
-            animator.SetBool("isSprinting", Input.GetButtonDown("Sprint"));
+        //}
+        //if (isGrounded && Input.GetButtonDown("Sprint") && z < 0)
+        //{
+        //    movementSpeed = 3.0f;
+        //    animator.SetBool("isSprinting", Input.GetButtonDown("Sprint"));
 
-        }
-        if (isGrounded && Input.GetButtonUp("Sprint") && z > 0)
-        {
-            movementSpeed = 3.0f;
-            animator.SetBool("isSprinting", false);
-        }
-        if (isGrounded && Input.GetButtonUp("Sprint") && z < 0)
-        {
-            movementSpeed = 2.0f;
-            animator.SetBool("isSprinting", false);
-        }
+        //}
+        //if (isGrounded && Input.GetButtonUp("Sprint") && z > 0)
+        //{
+        //    movementSpeed = 3.0f;
+        //    animator.SetBool("isSprinting", false);
+        //}
+        //if (isGrounded && Input.GetButtonUp("Sprint") && z < 0)
+        //{
+        //    movementSpeed = 2.0f;
+        //    animator.SetBool("isSprinting", false);
+        //}
 
         //Jump function
         velocity.y = yJump;
@@ -168,14 +165,20 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, pivot.rotation.eulerAngles.y, 0f);
         }
+        //Move player direction based on camera direction - Mobile
+        if (xJoy != 0 || zJoy != 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, pivot.rotation.eulerAngles.y, 0f);
+        }
 
         //Animation parameter functions
         animator.SetBool("isGrounded", controller.isGrounded);
-        animator.SetFloat("Speed", Input.GetAxis("Vertical") + Input.GetAxis("Horizontal") - (Input.GetAxis("LeftJoyStickVertical") + Input.GetAxis("LeftJoyStickHorizontal")));
-        animator.SetFloat("Speed", joystick.Vertical + joystick.Horizontal - joystick.Vertical + joystick.Horizontal);
+        animator.SetFloat("Speed", Input.GetAxis("Vertical") + Input.GetAxis("Horizontal") + (Input.GetAxis("LeftJoyStickVertical") + Input.GetAxis("LeftJoyStickHorizontal")));
+        animator.SetFloat("Speed", zJoy + xJoy + zJoy + xJoy);
         animator.SetFloat("SprintSpeed", Input.GetAxis("Vertical") + Input.GetAxis("Horizontal") + Input.GetAxis("LeftJoyStickVertical") + Input.GetAxis("LeftJoyStickHorizontal") + 1);
+        animator.SetFloat("SprintSpeed", zJoy + xJoy + zJoy + xJoy + 1);
 
-        
+
 
         #region Temporary Health Bar Function
         if (Input.GetKeyDown(KeyCode.P))
@@ -197,17 +200,16 @@ public class PlayerController : MonoBehaviour
         //{
         //    animator.SetBool("isAttacking", false);
         //}
-
-        if (Input.GetKeyDown(KeyCode.Mouse1) && isGrounded)
-        {
-            animator.SetBool("isParrying", true);
-            playerAudioSource.clip = parrySound;
-            playerAudioSource.Play();
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse1) && isGrounded)
-        {
-            animator.SetBool("isParrying", false);
-        }
+        //if (Input.GetKeyDown(KeyCode.Mouse1) && isGrounded)
+        //{
+        //    animator.SetBool("isParrying", true);
+        //    playerAudioSource.clip = parrySound;
+        //    playerAudioSource.Play();
+        //}
+        //if (Input.GetKeyUp(KeyCode.Mouse1) && isGrounded)
+        //{
+        //    animator.SetBool("isParrying", false);
+        //}
 
         if (pause.isPaused)
         {
@@ -226,6 +228,12 @@ public class PlayerController : MonoBehaviour
         if(currentHealth <= 0)
         {
             Invoke("RestartScene", 5.0f);
+        }
+        if(zJoy == 0)
+        {
+            movementSpeed = 1.5f;
+            isSprinting = false;
+            animator.SetBool("isSprinting", false);
         }
     }
 
@@ -263,7 +271,24 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprintPressed()
     {
-        ToggleSprint();
+        if (isGrounded && zJoy > 0.0f)
+        {
+            movementSpeed = sprintSpeed;
+            isSprinting = true;
+            animator.SetBool("isSprinting", isSprinting);
+        }
+        if(isGrounded && zJoy == 0 || zJoy == 0)
+        {
+            movementSpeed = 1.5f;
+            isSprinting = false;
+            animator.SetBool("isSprinting", false);
+        }
+        if (isGrounded && zJoy < 0)
+        {
+            movementSpeed = 1.75f;
+            isSprinting = true;
+            animator.SetBool("isSprinting", true);
+        }
     }
 
     #region Jump Function Mobile
@@ -302,7 +327,8 @@ public class PlayerController : MonoBehaviour
     {
         
         ToggleAttack();
-        
+        Invoke("ToggleAttack", 1.0f);
+
     }
     #endregion
 
