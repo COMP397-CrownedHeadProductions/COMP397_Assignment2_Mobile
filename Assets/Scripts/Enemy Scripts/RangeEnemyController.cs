@@ -136,10 +136,18 @@ public class RangeEnemyController : MonoBehaviour
         if (!attackActive)
         {
             //Instantiate Enemy projectile
-            Rigidbody rb = Instantiate(enemyProjectile, shootPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
+            //Rigidbody rb = Instantiate(enemyProjectile, shootPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
             //rb.AddForce(transform.up, ForceMode.Impulse);
-
+            GameObject projectile = ProjectileObjectPool.SharedInstance.GetPooledObject();
+            if(projectile != null)
+            {
+                projectile.transform.position = shootPoint.transform.position;
+                projectile.transform.rotation = shootPoint.transform.rotation;
+                projectile.SetActive(true);
+            }
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
             attackActive = true;
             Invoke(nameof(ResetAttack), attackDelay);
         }

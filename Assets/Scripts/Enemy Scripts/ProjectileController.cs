@@ -43,6 +43,7 @@ public class ProjectileController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //rb.AddForce(transform.forward, ForceMode.Impulse);
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -50,17 +51,20 @@ public class ProjectileController : MonoBehaviour
         damage = Random.Range(damageRange1, damageRange2);
         if(collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Projectile")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             Debug.Log("Projectile collided with Wall");
         }
         if (collision.gameObject.tag == "Ground")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             Debug.Log("Projectile collided with Ground");
         }
         if (collision.gameObject.tag == "PlayerSword")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             Debug.Log("Projectile collided with Sword");
         }
         if (collision.gameObject.tag == "Player")
@@ -68,7 +72,8 @@ public class ProjectileController : MonoBehaviour
             //collision.gameObject.GetComponent<PlayerController>().currentHealth -= damage;
             playerDamage.DamageHealth(damage);
             healthBar.TakeDamage(damage);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             Debug.Log("Enemy dealt " + damage + " damage to Player");
         }
     }
