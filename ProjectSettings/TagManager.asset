@@ -13,8 +13,6 @@ TagManager:
   - DeadZone
   - Metal
   - EnemySword
-  - Item
-  - ItemManager
   layers:
   - Default
   - TransparentFX

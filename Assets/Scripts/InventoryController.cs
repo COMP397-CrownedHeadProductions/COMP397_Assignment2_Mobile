@@ -15,11 +15,6 @@ public class InventoryController : MonoBehaviour
     public CameraController playerCamera;
     public Pauseable pausable;
 
-    private int allSlots;
-    private int enabledSlots;
-    private GameObject[] slot;
-
-    public GameObject slotHolder;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,18 +23,6 @@ public class InventoryController : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         rectTransform.anchoredPosition = offScreenPos;
         timer = 0.0f;
-
-        allSlots = 40;
-        slot = new GameObject[allSlots];
-        for (int i = 0; i < allSlots; i++)
-        {
-            slot[i] = slotHolder.transform.GetChild(i).gameObject;
-
-            if (slot[i].GetComponent<Slot>().item == null)
-            {
-                slot[i].GetComponent<Slot>().isEmpty = true;
-            }
-        }
     }
 
     // Update is called once per frame
@@ -115,38 +98,6 @@ public class InventoryController : MonoBehaviour
         if (pausable.isGamePaused)
         {
             pausable.TogglePause();
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag=="Item")
-        {
-            GameObject itemPickedUp = other.gameObject;
-            Item item = itemPickedUp.GetComponent<Item>();
-            AddItem(itemPickedUp, item.ID, item.type, item.desc, item.thumbnail );
-        }
-    }
-    void AddItem(GameObject itemObject,int id, string type, string desc, Sprite icon)
-    {
-        for (int i = 0; i < allSlots; i++)
-        {
-            if (slot[i].GetComponent<Slot>().isEmpty)
-            {
-                itemObject.GetComponent<Item>().isPickedUp = true;
-
-                slot[i].GetComponent<Slot>().item = itemObject;
-                slot[i].GetComponent<Slot>().icon = icon;
-                slot[i].GetComponent<Slot>().type = type;
-                slot[i].GetComponent<Slot>().ID = id;
-                slot[i].GetComponent<Slot>().desc = desc;
-
-                itemObject.transform.parent = slot[i].transform;
-                itemObject.SetActive(false);
-
-                slot[i].GetComponent<Slot>().UpdateSlot();
-                slot[i].GetComponent<Slot>().isEmpty = false;
-            }
-            return;
         }
     }
 }
