@@ -136,11 +136,9 @@ public class PauseController : MonoBehaviour
         }
     }
 
-    
-
     void LoadGame()
     {
-        Debug.Log("Load Game Successful");
+        //sceneData = JsonUtility.FromJson<SceneDataSO>(PlayerPrefs.GetString("playerData")); 
         player.controller.enabled = false;
         player.transform.position = sceneData.playerPosition;
         player.transform.rotation = sceneData.playerRotation;
@@ -152,9 +150,9 @@ public class PauseController : MonoBehaviour
         //Load Chase Enemy Position, Rotation and Health
         foreach (var chaseEnemy in chaseEnem)
         {
-            sceneData.chaseEnemPos = chaseEnemy.transform.position;
-            sceneData.chaseEnemRot = chaseEnemy.transform.rotation;
-            sceneData.chaseEnemHealth = chaseEnemy.health;
+            chaseEnemy.transform.position = sceneData.chaseEnemPos;
+            chaseEnemy.transform.rotation = sceneData.chaseEnemRot;
+            chaseEnemy.health = sceneData.chaseEnemHealth;
         }
 
         //Load Range Enemy Position, Rotation and Health
@@ -164,11 +162,11 @@ public class PauseController : MonoBehaviour
             rangeEnemy.transform.rotation = sceneData.rangeEnemRot;
             rangeEnemy.rHealth = sceneData.rangeEnemHealth;
         }
+        Debug.Log("Load Game Successful");
     }
     
     void SaveGame()
     {
-        Debug.Log("Save Game Successful");
         sceneData.playerPosition = player.transform.position;
         sceneData.playerRotation = player.transform.rotation;
         sceneData.cameraRotation = playerCamera.transform.rotation;
@@ -190,10 +188,10 @@ public class PauseController : MonoBehaviour
             sceneData.rangeEnemRot = rangeEnemy.transform.rotation;
             sceneData.rangeEnemHealth = rangeEnemy.rHealth;
         }
+        Debug.Log("Save Game Successful");
         // Serialize and Save our data to Player Preferences dictionary/db
         PlayerPrefs.SetString("playerData", JsonUtility.ToJson(sceneData));
     }
-
 
     void ResumeGame()
     {
@@ -208,6 +206,7 @@ public class PauseController : MonoBehaviour
         //player.controller.enabled = true;
         Debug.Log("Resume");
     }
+
     void PauseGame()
     {
         //Cursor.lockState = CursorLockMode.Confined;
@@ -221,6 +220,7 @@ public class PauseController : MonoBehaviour
         player.controller.enabled = false;
         Debug.Log("Pause");
     }
+
     public void ToMenu()
     {
         SceneManager.LoadScene("MenuScene");
@@ -232,17 +232,20 @@ public class PauseController : MonoBehaviour
         playerCamera.enabled = true;
         player.controller.enabled = true;
     }
+
     public void OnPauseButtonPressed()
     {
         TogglePaused();
         playerCamera.enabled = true;
         player.controller.enabled = true;
     }
+
     public void OnLoadButtonPressed()
     {
         LoadGame();
         player.controller.enabled = true;
     }
+
     public void OnSaveButtonPressed()
     {
         SaveGame();
