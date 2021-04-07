@@ -125,8 +125,8 @@ public class HeartDropController : MonoBehaviour {
             PlayerController health = other.gameObject.GetComponent<PlayerController>();
             health.currentHealth += healthAmount;
             healthBar.TakeDamage(-healthAmount);
-            Destroy(gameObject);
-            if(health.currentHealth > health.maxHealth)
+            gameObject.SetActive(false);
+            if (health.currentHealth > health.maxHealth)
             {
                 health.currentHealth = health.maxHealth;
             }

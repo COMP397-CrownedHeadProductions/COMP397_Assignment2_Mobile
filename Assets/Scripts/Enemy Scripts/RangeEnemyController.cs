@@ -173,6 +173,13 @@ public class RangeEnemyController : MonoBehaviour
         {
             heartPickup = Instantiate(healthDrop, heartSpawn.transform.position, transform.rotation);
             heartPickup.transform.Rotate(-90.0f, 0.0f, 0.0f);
+            //heartPickup = ProjectileObjectPool.SharedInstance.GetPooledObject();
+            //if (heartPickup != null)
+            //{
+            //    heartPickup.transform.position = heartSpawn.transform.position;
+            //    heartPickup.transform.rotation = heartSpawn.transform.rotation;
+            //    heartPickup.SetActive(true);
+            //}
         }
     }
 }
