@@ -12,24 +12,30 @@ public class Item : MonoBehaviour
 
     [HideInInspector]
     public bool isUsed;
+
     [HideInInspector]
     public bool isPlayerObject;
+
     [HideInInspector]
     public GameObject Heart;
 
     [HideInInspector]
     public GameObject itemManager;
+
+    public bool playerItem;
+
     public void Start()
     {
         itemManager = GameObject.FindWithTag("ItemManager");
+
         if (!isPlayerObject)
         {
             int allItems = itemManager.transform.childCount;
             for (int i = 0; i < allItems; i++)
             {
-                if (transform.GetChild(i).gameObject.GetComponent<Item>().ID == ID)
+                if (itemManager.transform.GetChild(i).gameObject.GetComponent<Item>().ID == ID)
                 {
-                    Heart = transform.GetChild(i).gameObject;
+                    Heart = itemManager.transform.GetChild(i).gameObject;
                 }
             }
         }
@@ -38,6 +44,12 @@ public class Item : MonoBehaviour
     {
         if (isUsed)
         {
+            if (Input.GetKeyDown(KeyCode.G))
+                isUsed = false;
+
+            if (isUsed == false)
+                this.gameObject.SetActive(false);
+
 
         }
     }
@@ -45,7 +57,8 @@ public class Item : MonoBehaviour
     {
         if(type == "Item")
         {
-            isUsed = true;
+            Heart.SetActive(true);
+            Heart.GetComponent<Item>().isUsed = true;
         }
     }
 }

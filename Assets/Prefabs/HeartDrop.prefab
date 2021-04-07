@@ -164,3 +164,4 @@ MonoBehaviour:
   isPlayerObject: 0
   Heart: {fileID: 0}
   itemManager: {fileID: 0}
+  playerItem: 1
