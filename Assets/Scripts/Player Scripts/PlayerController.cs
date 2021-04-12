@@ -28,6 +28,10 @@ using UnityEngine.SceneManagement;
  * - Added function to player movement and attacking for mobile application
  * - Added function to minimap toggle for mobile application
  * - Function to restart scene when player's health gets to 0 or less
+ * 
+ *                     Final Release - 2021.04.12
+ * - Added button UI and functionality to toggle quest menu
+ * - 
  */
 
 public class PlayerController : MonoBehaviour

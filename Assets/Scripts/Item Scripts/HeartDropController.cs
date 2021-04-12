@@ -6,7 +6,7 @@ using UnityEngine.UI;
  * Source File: HeartDropController.cs
  * Editors: Timothy Garcia
  * Student Number: 300898955
- * Date Modified: 02-16-2021
+ * Date Modified: 02-12-2021
  * Program: 3109 - Game-Programming(Optional Co-op)
  * 
  * --------------------Revision History--------------------
@@ -19,6 +19,10 @@ using UnityEngine.UI;
  * - Max Health game object created
  * 
  *                        Beta - 2021-03-21
+ * - 
+ * 
+ *                 Final Release - 2021.04.12
+ * - Implemented function and UI for collecting all super hearts (optional quest)
  * - 
  */
 

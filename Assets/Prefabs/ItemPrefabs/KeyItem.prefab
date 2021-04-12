@@ -66,8 +66,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05961151, y: 0.157921, z: 0.11801338}
-  m_Center: {x: 0.0023956299, y: 0.10099875, z: 0.037190057}
+  m_Size: {x: 0.07557006, y: 0.16593772, z: 0.18298514}
+  m_Center: {x: 0.0022360086, y: 0.105007075, z: 0.039485633}
 --- !u!54 &529402882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyItem: {fileID: 0}
   keyAudioSource: {fileID: 5966739609034338700}
+  destroyDelay: 0.7
 --- !u!82 &5966739609034338700
 AudioSource:
   m_ObjectHideFlags: 0
