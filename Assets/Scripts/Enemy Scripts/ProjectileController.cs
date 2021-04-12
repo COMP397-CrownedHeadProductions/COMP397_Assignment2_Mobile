@@ -16,6 +16,11 @@ using UnityEngine.UI;
  * - Projectile for ranged enemy implemented(WIP)
  * - Damage to player functional
  * - Game object destroyed when it collides with player or wall
+ * 
+ *             Beta(Mobile Conversion) continued		2021.04.05
+ * - Object Pooling Optimization Pattern implemented to Range Enemy projectiles
+ * - Enemy AI pathfinding and sensing suite improved (WIP)
+ *
  */
 
 public class ProjectileController : MonoBehaviour

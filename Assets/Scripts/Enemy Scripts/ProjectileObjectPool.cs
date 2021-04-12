@@ -2,6 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Source File: ProjectObjectPool.cs
+ * Editors: Timothy Garcia
+ * Student Number: 300898955
+ * Date Modified: 04-05-2021
+ * Program: 3109 - Game-Programming(Optional Co-op)
+ * 
+ *             Beta(Mobile Conversion) continued		2021.04.05
+ * - Object Pooling Optimization Pattern implemented to Range Enemy projectiles
+ *
+ */
+
 public class ProjectileObjectPool : MonoBehaviour
 {
     public static ProjectileObjectPool SharedInstance;

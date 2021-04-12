@@ -17,6 +17,11 @@ using UnityEngine.AI;
  * - Enemy AI functions implemented (Patrol, Chase and Attack player functions)
  * - Enemy distance modified for ranged enemy
  * - Health drop variables added
+ * 
+ *             Beta(Mobile Conversion) continued		2021.04.05
+ * - Object Pooling Optimization Pattern implemented to Range Enemy projectiles
+ * - Enemy AI pathfinding and sensing suite improved (WIP)
+ *
  */
 public class RangeEnemyController : MonoBehaviour
 {

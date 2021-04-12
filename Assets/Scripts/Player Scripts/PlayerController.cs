@@ -70,6 +70,9 @@ public class PlayerController : MonoBehaviour
     [Header("MiniMap")]
     public GameObject miniMap;
 
+    [Header("QuestMenu")]
+    public GameObject questMenu;
+
     [Header("Player Audio Properties")]
     //Audio variables
     public AudioClip swordSwing;
@@ -340,6 +343,16 @@ public class PlayerController : MonoBehaviour
     public void OnMiniMapButtonPressed()
     {
         ToggleMiniMap();
+    }
+
+    void ToggleQuestMenu()
+    {
+        questMenu.SetActive(!questMenu.activeInHierarchy);
+    }
+
+    public void OnQuestMenuPressed()
+    {
+        ToggleQuestMenu();
     }
 
     public void DamageHealth(int amt)
