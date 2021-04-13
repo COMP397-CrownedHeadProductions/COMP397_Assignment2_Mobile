@@ -7,7 +7,7 @@ using UnityEngine.AI;
  * Source File: ChaseEnemyController.cs
  * Editors: Timothy Garcia
  * Student Number: 300898955
- * Date Modified: 02-14-2021
+ * Date Modified: 04-16-2021
  * Program: 3109 - Game-Programming(Optional Co-op)
  * 
  * --------------------Revision History--------------------
@@ -15,10 +15,16 @@ using UnityEngine.AI;
  * - Basic enemy movement and animation implemented
  * - Enemy AI functions implemented (Patrol, Chase and Attack player functions)
  * - Health drop variables added
+ * 
+ *                 Final Release - 2021.04.12
+ * - Implemented function and UI for destroying all enemies (optional quest)
+ * - 
  */
 
 public class ChaseEnemyController : MonoBehaviour
 {
+    public EnemyManager enemyManager;
+
     public NavMeshAgent navMeshAgent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -50,6 +56,7 @@ public class ChaseEnemyController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        enemyManager = GameObject.Find("Enemies").GetComponent<EnemyManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -143,6 +150,7 @@ public class ChaseEnemyController : MonoBehaviour
     {
         if (health <= 0)
         {
+            enemyManager.chaseEnemyCount++;
             HealthDrop();
             Destroy(gameObject);
         }

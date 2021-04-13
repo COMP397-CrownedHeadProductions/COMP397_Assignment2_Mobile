@@ -16,6 +16,7 @@ TagManager:
   - Item
   - ItemManager
   - Heart
+  - Key
   layers:
   - Default
   - TransparentFX

@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
     //Audio variables
     public AudioClip swordSwing;
     public AudioClip parrySound;
+    public AudioClip keyCollectSound;
     AudioSource playerAudioSource;
 
     // Start is called before the first frame update
@@ -327,6 +328,15 @@ public class PlayerController : MonoBehaviour
         {
             isAttacking = false;
             animator.SetBool("isAttacking", false);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Key")
+        {
+            playerAudioSource.clip = keyCollectSound;
+            playerAudioSource.Play();
         }
     }
 

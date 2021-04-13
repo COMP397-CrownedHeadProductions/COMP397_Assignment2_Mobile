@@ -8,7 +8,7 @@ using UnityEngine.AI;
  * Source File: RangeEnemyController.cs
  * Editors: Timothy Garcia
  * Student Number: 300898955
- * Date Modified: 02-16-2021
+ * Date Modified: 04-16-2021
  * Program: 3109 - Game-Programming(Optional Co-op)
  * 
  * --------------------Revision History--------------------
@@ -22,9 +22,15 @@ using UnityEngine.AI;
  * - Object Pooling Optimization Pattern implemented to Range Enemy projectiles
  * - Enemy AI pathfinding and sensing suite improved (WIP)
  *
+ *             Final Release - 2021.04.12
+ * - Implemented function and UI for destroying all enemies (optional quest)
+ * - 
  */
+
 public class RangeEnemyController : MonoBehaviour
 {
+    public EnemyManager enemyManager;
+
     public NavMeshAgent navMeshAgent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -58,6 +64,7 @@ public class RangeEnemyController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        enemyManager = GameObject.Find("Enemies").GetComponent<EnemyManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -168,6 +175,7 @@ public class RangeEnemyController : MonoBehaviour
     {
         if (rHealth <= 0) 
         {
+            enemyManager.rangeEnemyCount++;
             HealthDrop();
             Destroy(gameObject);
         }

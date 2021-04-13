@@ -40,8 +40,8 @@ public class KeyItemController : MonoBehaviour
         if (other.tag == "Player")
         {
             keyItem.keyCount++;
-            keyAudioSource.Play();
-            Destroy(gameObject, destroyDelay);
+            //keyAudioSource.Play();
+            Destroy(gameObject);
 
             //gameObject.SetActive(false);
         }

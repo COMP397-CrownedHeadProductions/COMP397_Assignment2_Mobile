@@ -20,7 +20,7 @@ using UnityEngine.UI;
 public class SuperHeartManager : MonoBehaviour
 {
     public Text superHeartText;
-    public int superHeartCount;
+    public float superHeartCount;
     public int superHeartTotal;
     public Image checkMark3;
 
@@ -33,7 +33,7 @@ public class SuperHeartManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        superHeartText.text = superHeartCount.ToString() + "/" + superHeartTotal.ToString();
+        superHeartText.text = superHeartCount.ToString("0") + "/" + superHeartTotal.ToString();
         if (superHeartCount >= superHeartTotal)
         {
             checkMark3.gameObject.SetActive(true);
