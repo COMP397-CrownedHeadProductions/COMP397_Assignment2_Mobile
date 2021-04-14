@@ -31,7 +31,7 @@ using UnityEngine.SceneManagement;
  * 
  *                     Final Release - 2021.04.12
  * - Added button UI and functionality to toggle quest menu
- * - 
+ * - Implemented sound effects when picking up items
  */
 
 public class PlayerController : MonoBehaviour
@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip swordSwing;
     public AudioClip parrySound;
     public AudioClip keyCollectSound;
+    public AudioClip heartCollectSound;
+    public AudioClip superHeartCollectSound;
     AudioSource playerAudioSource;
 
     // Start is called before the first frame update
@@ -336,6 +338,16 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Key")
         {
             playerAudioSource.clip = keyCollectSound;
+            playerAudioSource.Play();
+        }
+        if(other.tag == "Heart")
+        {
+            playerAudioSource.clip = heartCollectSound;
+            playerAudioSource.Play();
+        }
+        if(other.tag == "SuperHeart")
+        {
+            playerAudioSource.clip = superHeartCollectSound;
             playerAudioSource.Play();
         }
     }
