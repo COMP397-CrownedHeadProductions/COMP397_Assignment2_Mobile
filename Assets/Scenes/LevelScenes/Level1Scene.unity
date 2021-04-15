@@ -593,6 +593,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1204705823903192079, guid: 99d9e43ebcbd3f74e893dbc33e97485f, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3894742645382007045, guid: 99d9e43ebcbd3f74e893dbc33e97485f, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -1024,7 +1028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &237629565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1282,38 +1286,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 367286203}
-    - target: {fileID: 5480606263433238290, guid: b879c780438401a4c8b2416964a05dff, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 45.88517
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480606263433238290, guid: b879c780438401a4c8b2416964a05dff, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480606263433238290, guid: b879c780438401a4c8b2416964a05dff, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480606263433238290, guid: b879c780438401a4c8b2416964a05dff, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480606263433238290, guid: b879c780438401a4c8b2416964a05dff, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480606263433238290, guid: b879c780438401a4c8b2416964a05dff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480606263587628303, guid: b879c780438401a4c8b2416964a05dff, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 51.599457
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480606263587628303, guid: b879c780438401a4c8b2416964a05dff, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.44029665
-      objectReference: {fileID: 0}
     - target: {fileID: 7245677944805537235, guid: b879c780438401a4c8b2416964a05dff, type: 3}
       propertyPath: m_Name
       value: Level2Layout
@@ -7554,7 +7526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3050928131002233563, guid: e98c7954dc0468445bb551b95bf8fa55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.683735
+      value: 21.1
       objectReference: {fileID: 0}
     - target: {fileID: 3050928131002233563, guid: e98c7954dc0468445bb551b95bf8fa55, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7562,7 +7534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3050928131002233563, guid: e98c7954dc0468445bb551b95bf8fa55, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -142.17004
+      value: -154.17004
       objectReference: {fileID: 0}
     - target: {fileID: 3050928131002233563, guid: e98c7954dc0468445bb551b95bf8fa55, type: 3}
       propertyPath: m_LocalRotation.w
