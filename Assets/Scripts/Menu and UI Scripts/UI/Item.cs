@@ -27,7 +27,6 @@ public class Item : MonoBehaviour
     public void Start()
     {
         itemManager = GameObject.FindWithTag("ItemManager");
-
         if (!isPlayerObject)
         {
             int allItems = itemManager.transform.childCount;
@@ -42,23 +41,34 @@ public class Item : MonoBehaviour
     }
     public void Update()
     {
-        if (isUsed)
+        //Make sure the item is picked up
+        if (isPickedUp)
         {
-            if (Input.GetKeyDown(KeyCode.G))
-                isUsed = false;
-
-            if (isUsed == false)
-                this.gameObject.SetActive(false);
-
-
+            //Set the isUsed to false so that it can be used.
+            if (!isUsed)
+            {
+                //Make sure the game is paused to use the heart
+                if (GetComponentInParent<PauseController>().isPaused && Input.GetKeyDown(KeyCode.G))
+                {
+                    //Add health
+                    GetComponentInParent<PlayerController>().currentHealth = 100;
+                    //deactivate the heart on player's hand and in the inventory.
+                    gameObject.SetActive(false);
+                    //set isUsed to true
+                    isUsed = true;
+                }
+            }
         }
     }
-    public void ItemUsage()
+    //put a heart on the player's hand and press g to use
+    public void OnButtonPressed()
     {
-        if(type == "Heart")
+        if (type == "Heart")
         {
+
             Heart.SetActive(true);
-            Heart.GetComponent<Item>().isUsed = true;
+
+            Heart.GetComponent<Item>().isUsed = false;
         }
     }
 }
