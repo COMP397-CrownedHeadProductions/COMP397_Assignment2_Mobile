@@ -1073,6 +1073,8 @@ GameObject:
   - component: {fileID: 8437015353479595284}
   - component: {fileID: 4676077641456011661}
   - component: {fileID: 5202457837423325000}
+  - component: {fileID: -4779422428943730863}
+  - component: {fileID: -527123288342729068}
   m_Layer: 11
   m_Name: EnemyKnight
   m_TagString: Enemy
@@ -1182,6 +1184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611c80a3ba7868c4aa2a4ac1f6de97a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyManager: {fileID: 0}
   navMeshAgent: {fileID: 4676077641456011661}
   player: {fileID: 0}
   whatIsGround:
@@ -1207,6 +1210,36 @@ MonoBehaviour:
   attackRange: 3
   inSightRange: 0
   inAttackRange: 0
+--- !u!114 &-4779422428943730863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618220928635241562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d58ebf72a4d76a42b0c0546ed2b18e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 7805264600317546327, guid: 8cae84bdfac5d17408284c935ab9ae02, type: 3}
+  poolAmount: 5
+--- !u!114 &-527123288342729068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618220928635241562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd200acce475e544e973e5eb3f9111ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 6863466487341250478, guid: db45795c6ba88094ea7c695b65e105bb, type: 3}
+  poolAmount: 1
 --- !u!1 &7618220928635241564
 GameObject:
   m_ObjectHideFlags: 0
