@@ -30,6 +30,6 @@ public class Slot : MonoBehaviour
     }
     public void UseItem()
     {
-        item.GetComponent<Item>().ItemUsage();
+        item.GetComponent<Item>().OnButtonPressed();
     }
 }

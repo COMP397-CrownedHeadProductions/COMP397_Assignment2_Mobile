@@ -65,9 +65,9 @@ public class Item : MonoBehaviour
     {
         if (type == "Heart")
         {
-
+            //Puts the heart on player's hand.
             Heart.SetActive(true);
-
+            //un-use the heart and set the isUsed to false.
             Heart.GetComponent<Item>().isUsed = false;
         }
     }
