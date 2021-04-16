@@ -163,6 +163,6 @@ MonoBehaviour:
   isPickedUp: 0
   isUsed: 0
   isPlayerObject: 0
-  Heart: {fileID: 8607887138957960626}
-  itemManager: {fileID: 1234935600266794350, guid: 9b2fc04665c8af24c8a950a4f0e7bb76, type: 3}
+  Heart: {fileID: 0}
+  itemManager: {fileID: 0}
   playerItem: 1
