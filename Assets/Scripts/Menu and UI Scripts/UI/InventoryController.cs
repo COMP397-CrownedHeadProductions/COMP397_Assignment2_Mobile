@@ -50,7 +50,6 @@ public class InventoryController : MonoBehaviour
         {
             isOnScreen = !isOnScreen;
             timer = 0.0f;
-
             if (isOnScreen)
             {
                 Cursor.lockState = CursorLockMode.None;
@@ -58,7 +57,6 @@ public class InventoryController : MonoBehaviour
             }
             else
             {
-
                 Cursor.lockState = CursorLockMode.Locked;
                 playerCamera.enabled = true;
             }
@@ -111,7 +109,6 @@ public class InventoryController : MonoBehaviour
         {
             timer += Time.deltaTime * speed;
         }
-
         if (pausable.isGamePaused)
         {
             pausable.TogglePause();

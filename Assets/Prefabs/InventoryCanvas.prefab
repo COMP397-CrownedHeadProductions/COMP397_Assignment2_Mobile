@@ -4227,7 +4227,7 @@ GameObject:
   - component: {fileID: 6131982112960028291}
   - component: {fileID: 6131982112960028289}
   m_Layer: 5
-  m_Name: InvUI
+  m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5043,7 +5043,7 @@ GameObject:
   - component: {fileID: 6131982113443817542}
   - component: {fileID: 6131982113443817541}
   m_Layer: 5
-  m_Name: SlotHandler
+  m_Name: SlotHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

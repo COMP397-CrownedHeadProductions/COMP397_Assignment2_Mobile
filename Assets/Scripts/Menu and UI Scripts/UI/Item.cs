@@ -10,16 +10,16 @@ public class Item : MonoBehaviour
     public Sprite thumbnail;
     public bool isPickedUp;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool isUsed;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool isPlayerObject;
 
-    [HideInInspector]
+    //[HideInInspector]
     public GameObject Heart;
 
-    [HideInInspector]
+    //[HideInInspector]
     public GameObject itemManager;
 
     public bool playerItem;
@@ -39,7 +39,7 @@ public class Item : MonoBehaviour
             }
         }
     }
-    public void Update()
+    public void OnButtonPressed()
     {
         //Make sure the item is picked up
         if (isPickedUp)
@@ -48,7 +48,7 @@ public class Item : MonoBehaviour
             if (!isUsed)
             {
                 //Make sure the game is paused to use the heart
-                if (GetComponentInParent<PauseController>().isPaused && Input.GetKeyDown(KeyCode.G))
+                if (GetComponentInParent<PauseController>().isPaused)
                 {
                     //Add health
                     GetComponentInParent<PlayerController>().currentHealth = 100;
@@ -58,17 +58,6 @@ public class Item : MonoBehaviour
                     isUsed = true;
                 }
             }
-        }
-    }
-    //put a heart on the player's hand and press g to use
-    public void OnButtonPressed()
-    {
-        if (type == "Heart")
-        {
-            //Puts the heart on player's hand.
-            Heart.SetActive(true);
-            //un-use the heart and set the isUsed to false.
-            Heart.GetComponent<Item>().isUsed = false;
         }
     }
 }
