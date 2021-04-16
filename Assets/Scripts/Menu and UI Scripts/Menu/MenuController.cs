@@ -43,4 +43,28 @@ public class MenuController : MonoBehaviour
         Debug.Log(vol);
         audioMixer.SetFloat("Volume", vol);
     }
+
+    //Tutorial Scenes
+    public void TutorialSelect()
+    {
+        SceneManager.LoadScene("TutorialSelectScene");
+    }
+    public void ControlsScene()
+    {
+        SceneManager.LoadScene("TutorialScene");
+    }
+    public void Tutorial1()
+    {
+        SceneManager.LoadScene("Tutorial1Scene");
+    }
+
+    public void Tutorial2()
+    {
+        SceneManager.LoadScene("Tutorial2Scene");
+    }
+
+    public void Tutorial3()
+    {
+        SceneManager.LoadScene("Tutorial3Scene");
+    }
 }
