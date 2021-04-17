@@ -1569,6 +1569,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 285997256620084004, guid: b46cda02f33cd6a49b8204bf7e6685f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 35911734}
+    - target: {fileID: 285997256620084004, guid: b46cda02f33cd6a49b8204bf7e6685f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnQuestMenuPressed
+      objectReference: {fileID: 0}
     - target: {fileID: 3098507195779873669, guid: b46cda02f33cd6a49b8204bf7e6685f9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
