@@ -24,7 +24,7 @@ using UnityEngine.AI;
  *
  *             Final Release - 2021.04.12
  * - Implemented function and UI for destroying all enemies (optional quest)
- * - 
+ * - Object Pooling Optimization Pattern implemented to Heart Drop
  */
 
 public class RangeEnemyController : MonoBehaviour
@@ -184,15 +184,15 @@ public class RangeEnemyController : MonoBehaviour
     {
         if (dropsHealth)
         {
-            heartPickup = Instantiate(healthDrop, heartSpawn.transform.position, transform.rotation);
-            heartPickup.transform.Rotate(-90.0f, 0.0f, 0.0f);
-            //heartPickup = ProjectileObjectPool.SharedInstance.GetPooledObject();
-            //if (heartPickup != null)
-            //{
-            //    heartPickup.transform.position = heartSpawn.transform.position;
-            //    heartPickup.transform.rotation = heartSpawn.transform.rotation;
-            //    heartPickup.SetActive(true);
-            //}
+            //heartPickup = Instantiate(healthDrop, heartSpawn.transform.position, transform.rotation);
+            //heartPickup.transform.Rotate(-90.0f, 0.0f, 0.0f);
+            GameObject heartPickup = HeartObjectPool.SharedInstance.GetPooledObject();
+            if (heartPickup != null)
+            {
+                heartPickup.transform.position = heartSpawn.transform.position;
+                heartPickup.transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
+                heartPickup.SetActive(true);
+            }
         }
     }
 }

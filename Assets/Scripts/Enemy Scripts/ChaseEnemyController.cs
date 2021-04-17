@@ -18,7 +18,7 @@ using UnityEngine.AI;
  * 
  *                 Final Release - 2021.04.12
  * - Implemented function and UI for destroying all enemies (optional quest)
- * - 
+ * - Object Pooling Optimization Pattern implemented to Heart Drop
  */
 
 public class ChaseEnemyController : MonoBehaviour

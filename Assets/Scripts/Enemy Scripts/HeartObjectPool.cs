@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Source File: HeartObjectPool.cs
+ * Editors: Timothy Garcia
+ * Student Number: 300898955
+ * Date Modified: 04-16-2021
+ * Program: 3109 - Game-Programming(Optional Co-op)
+ * 
+ *             Final Release - 2021.04.16
+ * - Object Pooling Optimization Pattern implemented to Heart Drop
+ *
+ */
 public class HeartObjectPool : MonoBehaviour
 {
     public static HeartObjectPool SharedInstance;

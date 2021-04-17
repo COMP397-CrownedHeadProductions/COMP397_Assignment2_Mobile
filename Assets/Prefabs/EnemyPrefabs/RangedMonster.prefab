@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 170113386093032783}
   - component: {fileID: 1015536622924851582}
   - component: {fileID: 5389528995182537732}
+  - component: {fileID: -5039760280491982194}
   m_Layer: 11
   m_Name: RangedMonster
   m_TagString: RangeEnemy
@@ -272,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42329ff9f87e9f649942c38c97d6ecfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyManager: {fileID: 0}
   navMeshAgent: {fileID: 170113386093032783}
   player: {fileID: 4147766913557678289, guid: 99d9e43ebcbd3f74e893dbc33e97485f, type: 3}
   whatIsGround:
@@ -312,6 +314,21 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 3496651984529838256, guid: e422bd3c910e76d4e9b9751e23c1d611, type: 3}
   poolAmount: 10
+--- !u!114 &-5039760280491982194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4096424043618072004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd200acce475e544e973e5eb3f9111ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 6863466487341250478, guid: db45795c6ba88094ea7c695b65e105bb, type: 3}
+  poolAmount: 1
 --- !u!1 &4097237605026548500
 GameObject:
   m_ObjectHideFlags: 0
